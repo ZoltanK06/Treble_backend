@@ -22,6 +22,8 @@ public class AppDbContext : DbContext
 
   //public DbSet<ToDoItem> ToDoItems => Set<ToDoItem>();
   //public DbSet<Project> Projects => Set<Project>();
+  public DbSet<Penalty> Penalties { get; set; }
+  public DbSet<Quiz> Quizzes { get; set; }
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

@@ -1,0 +1,106 @@
+2022-05-24 18:46:53.021 +03:00 [INF] User profile is available. Using 'C:\Users\zkato\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-05-24 18:46:54.411 +03:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.2' with options: None
+2022-05-24 18:46:56.342 +03:00 [INF] Executed DbCommand (163ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [cleanarchitecture];
+2022-05-24 18:46:56.396 +03:00 [INF] Executed DbCommand (50ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [cleanarchitecture] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2022-05-24 18:46:56.413 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-05-24 18:46:56.513 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Penalties] (
+    [Id] int NOT NULL IDENTITY,
+    [Player] nvarchar(max) NOT NULL,
+    [Match] nvarchar(max) NOT NULL,
+    [Shot] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_Penalties] PRIMARY KEY ([Id])
+);
+2022-05-24 18:46:56.515 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Project] (
+    [Id] int NOT NULL IDENTITY,
+    [Name] nvarchar(100) NOT NULL,
+    [Priority] int NOT NULL,
+    CONSTRAINT [PK_Project] PRIMARY KEY ([Id])
+);
+2022-05-24 18:46:56.516 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Quizzes] (
+    [Id] int NOT NULL IDENTITY,
+    [Question] nvarchar(max) NOT NULL,
+    [Answer] nvarchar(max) NOT NULL,
+    [Image] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_Quizzes] PRIMARY KEY ([Id])
+);
+2022-05-24 18:46:56.518 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [ToDoItem] (
+    [Id] int NOT NULL IDENTITY,
+    [Title] nvarchar(max) NOT NULL,
+    [Description] nvarchar(max) NOT NULL,
+    [IsDone] bit NOT NULL,
+    [ProjectId] int NULL,
+    CONSTRAINT [PK_ToDoItem] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_ToDoItem_Project_ProjectId] FOREIGN KEY ([ProjectId]) REFERENCES [Project] ([Id])
+);
+2022-05-24 18:46:56.518 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_ToDoItem_ProjectId] ON [ToDoItem] ([ProjectId]);
+2022-05-24 18:46:56.671 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-24 18:46:56.671 +03:00 [INF] Hosting environment: Development
+2022-05-24 18:46:56.671 +03:00 [INF] Content root path: C:\Users\zkato\Documents\Treble_backend\Treble_backend\src\Treble_backend.Web\
+2022-05-24 18:46:56.744 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2022-05-24 18:46:56.804 +03:00 [WRN] Failed to determine the https port for redirect.
+2022-05-24 18:46:56.830 +03:00 [INF] Executing endpoint 'Treble_backend.Web.Controllers.HomeController.Index (Treble_backend.Web)'
+2022-05-24 18:46:56.839 +03:00 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Treble_backend.Web.Controllers.HomeController (Treble_backend.Web).
+2022-05-24 18:46:56.849 +03:00 [INF] Executing ViewResult, running view Index.
+2022-05-24 18:46:57.088 +03:00 [INF] Executed ViewResult - view Index executed in 239.301ms.
+2022-05-24 18:46:57.091 +03:00 [INF] Executed action Treble_backend.Web.Controllers.HomeController.Index (Treble_backend.Web) in 251.019ms
+2022-05-24 18:46:57.091 +03:00 [INF] Executed endpoint 'Treble_backend.Web.Controllers.HomeController.Index (Treble_backend.Web)'
+2022-05-24 18:46:57.152 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/css/site.css - -
+2022-05-24 18:46:57.154 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.css - -
+2022-05-24 18:46:57.155 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2022-05-24 18:46:57.177 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.js - -
+2022-05-24 18:46:57.178 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2022-05-24 18:46:57.180 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.js - -
+2022-05-24 18:46:57.190 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 200 - text/html;+charset=utf-8 437.6841ms
+2022-05-24 18:46:57.192 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 11994 application/javascript;+charset=utf-8 36.5727ms
+2022-05-24 18:46:57.237 +03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.css'. Physical path: 'C:\Users\zkato\Documents\Treble_backend\Treble_backend\src\Treble_backend.Web\wwwroot\lib\bootstrap\dist\css\bootstrap.css'
+2022-05-24 18:46:57.237 +03:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\Users\zkato\Documents\Treble_backend\Treble_backend\src\Treble_backend.Web\wwwroot\js\site.js'
+2022-05-24 18:46:57.237 +03:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.js'. Physical path: 'C:\Users\zkato\Documents\Treble_backend\Treble_backend\src\Treble_backend.Web\wwwroot\lib\bootstrap\dist\js\bootstrap.js'
+2022-05-24 18:46:57.237 +03:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: 'C:\Users\zkato\Documents\Treble_backend\Treble_backend\src\Treble_backend.Web\wwwroot\css\site.css'
+2022-05-24 18:46:57.237 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 200 230 application/javascript 59.3038ms
+2022-05-24 18:46:57.237 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/css/site.css - - - 200 1417 text/css 84.9055ms
+2022-05-24 18:46:57.239 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/js/bootstrap.js - - - 200 72084 application/javascript 62.4331ms
+2022-05-24 18:46:57.248 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/bootstrap/dist/css/bootstrap.css - - - 200 152767 text/css 93.7601ms
+2022-05-24 18:46:57.259 +03:00 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.js'. Physical path: 'C:\Users\zkato\Documents\Treble_backend\Treble_backend\src\Treble_backend.Web\wwwroot\lib\jquery\dist\jquery.js'
+2022-05-24 18:46:57.266 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/lib/jquery/dist/jquery.js - - - 200 278292 application/javascript 86.2249ms
+2022-05-24 18:47:53.132 +03:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.2' with options: None
+2022-05-24 18:48:10.903 +03:00 [INF] Entity Framework Core 6.0.2 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.2' with options: None
+2022-05-24 18:48:11.217 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-05-24 18:48:11.240 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-05-24 18:48:11.242 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-05-24 18:48:11.365 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2022-05-24 18:48:11.366 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2022-05-24 18:48:11.368 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2022-05-24 18:48:11.371 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2022-05-24 18:48:11.384 +03:00 [INF] Applying migration '20220524154753_Penalties-Quizzes'.
+2022-05-24 18:48:11.453 +03:00 [ERR] Failed executing DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Penalties] (
+    [Id] int NOT NULL IDENTITY,
+    [Player] nvarchar(max) NOT NULL,
+    [Match] nvarchar(max) NOT NULL,
+    [Shot] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_Penalties] PRIMARY KEY ([Id])
+);

@@ -7,10 +7,17 @@ using Treble_backend.Infrastructure.Data;
 using Treble_backend.Web;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using Treble_backend.Core.Services;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+builder.Services.AddCors(options =>
+{
+  options.AddPolicy("CORSPolicy", builder => { builder.AllowAnyMethod().AllowAnyHeader().WithOrigins("https://localhost:44494/"); });
+});
 
 builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration));
 
@@ -26,6 +33,11 @@ builder.Services.AddDbContext(connectionString);
 
 builder.Services.AddControllersWithViews().AddNewtonsoftJson();
 builder.Services.AddRazorPages();
+
+builder.Services.AddScoped<IPenaltyService, PenaltyService>();
+
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -91,7 +103,7 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<AppDbContext>();
     //                    context.Database.Migrate();
     context.Database.EnsureCreated();
-    SeedData.Initialize(services);
+    //SeedData.Initialize(services);
   }
   catch (Exception ex)
   {
